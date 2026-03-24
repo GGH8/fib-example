@@ -47,8 +47,9 @@ def get_weather(lat, lon):
         
         data = response.json()
         temperature = data["current_weather"]["temperature"]
-        
-        return temperature
+        #WINDSPEED
+        windspeed = data["current_weather"]["windspeed"]
+        return temperature, windspeed
 
     except Exception:
         print("Error securely fetching the temperature data!")
@@ -90,15 +91,20 @@ def main():
         # Skip this spin of the wheel if the city wasn't found
         if lat is None:
             continue
-            
-        temperature = get_weather(lat, lon)
+
+        # Catch both the temp AND the wind speed
+        temperature, windspeed = get_weather(lat, lon)
         
         if temperature is not None:
             # 4. Presentation
             print("=========================================")
             print(f"📍 Location: {human_input}")
             print(f"🌡️  Current Temperature: {temperature}°C")
+            
+            # ADD THIS LINE: Print the wind speed!
+            print(f"💨  Wind Speed: {windspeed} km/h")
             print("=========================================\n")
+
 
 
 # ==========================================
