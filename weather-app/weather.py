@@ -69,8 +69,8 @@ def main():
     default_lat, default_lon = get_coordinates(DEFAULT_CITY)
     
     if default_lat is not None:
-        default_temp = get_weather(default_lat, default_lon)
-        print(f"📍 {DEFAULT_CITY}: {default_temp}°C right now!")
+        default_temp, default_wind = get_weather(default_lat, default_lon)
+        print(f"📍 {DEFAULT_CITY}: {default_temp}°C with a {default_wind}km/h wind right now!")
         
     print("==========================================\n")
     
